@@ -339,7 +339,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 '''
 
-path = Path("/mnt/data/main_multilang.py")
+path = Path("/mnt/data/main.py")
 path.write_text(code, encoding="utf-8")
 print(f"Created: {path}")
 
