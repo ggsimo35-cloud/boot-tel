@@ -17,7 +17,7 @@ bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
 
-# إنشاء قاعدة البيانات
+# Create database
 db = sqlite3.connect("users.db")
 cursor = db.cursor()
 
@@ -42,7 +42,7 @@ async def start(message: types.Message):
 
     if cursor.fetchone():
         await message.answer(
-            "✅ أنت مشترك بالفعل."
+            "✅ You are already subscribed."
         )
         return
 
@@ -51,7 +51,7 @@ async def start(message: types.Message):
         inline_keyboard=[
             [
                 types.InlineKeyboardButton(
-                    text="⭐ دفع 50 Stars",
+                    text="⭐ Pay 50 Stars",
                     callback_data="pay"
                 )
             ]
@@ -59,7 +59,7 @@ async def start(message: types.Message):
     )
 
     await message.answer(
-        "اشترك للوصول إلى القناة الخاصة:",
+        "Subscribe to access the private channel:",
         reply_markup=keyboard
     )
 
@@ -69,14 +69,14 @@ async def pay(callback: types.CallbackQuery):
 
     await bot.send_invoice(
         chat_id=callback.from_user.id,
-        title="اشتراك القناة",
-        description="دخول دائم إلى القناة الخاصة",
+        title="Channel Subscription",
+        description="Permanent access to the private channel",
         payload="one_time_channel_access",
         provider_token="",
         currency="XTR",
         prices=[
             LabeledPrice(
-                label="اشتراك",
+                label="Subscription",
                 amount=50
             )
         ]
@@ -97,7 +97,7 @@ async def success(message: types.Message):
 
     user_id = message.from_user.id
 
-    # حفظ المشترك
+    # Save subscriber
     cursor.execute(
         "INSERT OR IGNORE INTO users VALUES (?)",
         (user_id,)
@@ -106,7 +106,7 @@ async def success(message: types.Message):
     db.commit()
 
 
-    # إنشاء رابط خاص للاستخدام مرة واحدة
+    # Create one-time invite link
     link = await bot.create_chat_invite_link(
         chat_id=CHANNEL_ID,
         member_limit=1
@@ -114,8 +114,8 @@ async def success(message: types.Message):
 
 
     await message.answer(
-        "✅ تم الدفع بنجاح\n\n"
-        "رابط دخول القناة:\n"
+        "✅ Payment successful!\n\n"
+        "Your private channel invite link:\n"
         f"{link.invite_link}"
     )
 
