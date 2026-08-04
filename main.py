@@ -6,7 +6,7 @@ from aiogram.filters import Command
 from aiogram.types import LabeledPrice, PreCheckoutQuery
 
 
-BOT_TOKEN = "8882282653:AAGieiKuEadfsfE88baF4dYZrfBUSyjqiCQ"
+BOT_TOKEN = "8882282653:AAFkMbB4shE1JfA42L9hBlfcfkVFsSUE1RI"
 
 CHANNEL_ID = -1004424805545
 
