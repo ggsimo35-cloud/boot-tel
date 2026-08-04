@@ -15,12 +15,12 @@ PRICE = 50
 PAYLOAD = "one_time_channel_access"
 
 if not BOT_TOKEN:
-    raise RuntimeError("8882282653:AAGieiKuEadfsfE88baF4dYZrfBUSyjqiCQ")
+    raise RuntimeError("BOT_TOKEN غير موجود. أضفه في Railway داخل Variables.")
 
 try:
     CHANNEL_ID = int(CHANNEL_ID_RAW)
 except ValueError as exc:
-    raise RuntimeError("-1004424805545") from exc
+    raise RuntimeError("CHANNEL_ID يجب أن يكون رقمًا صحيحًا.") from exc
 
 
 logging.basicConfig(
@@ -335,3 +335,4 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+
