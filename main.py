@@ -1,4 +1,6 @@
-import asyncio
+from pathlib import Path
+
+code = r'''import asyncio
 import logging
 import os
 import sqlite3
@@ -9,18 +11,18 @@ from aiogram.filters import Command
 from aiogram.types import LabeledPrice, PreCheckoutQuery
 
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+BOT_TOKEN = os.getenv("8882282653:AAGieiKuEadfsfE88baF4dYZrfBUSyjqiCQ", "").strip()
 CHANNEL_ID_RAW = os.getenv("CHANNEL_ID", "-1004424805545").strip()
 PRICE = 50
 PAYLOAD = "one_time_channel_access"
 
 if not BOT_TOKEN:
-    raise RuntimeError("BOT_TOKEN غير موجود. أضفه في Railway داخل Variables.")
+    raise RuntimeError("8882282653:AAGieiKuEadfsfE88baF4dYZrfBUSyjqiCQ")
 
 try:
     CHANNEL_ID = int(CHANNEL_ID_RAW)
 except ValueError as exc:
-    raise RuntimeError("CHANNEL_ID يجب أن يكون رقمًا صحيحًا.") from exc
+    raise RuntimeError("-1004424805545") from exc
 
 
 logging.basicConfig(
@@ -28,7 +30,7 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
 )
 
-bot = Bot(token=BOT_TOKEN)
+bot = Bot(token=8882282653:AAGieiKuEadfsfE88baF4dYZrfBUSyjqiCQ)
 dp = Dispatcher()
 
 
@@ -170,7 +172,7 @@ def language_keyboard() -> types.InlineKeyboardMarkup:
         inline_keyboard=[
             [
                 types.InlineKeyboardButton(
-                    text="🇩🇿 العربية",
+                    text="🇦🇪 العربية",
                     callback_data="lang_ar",
                 )
             ],
@@ -335,4 +337,9 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+'''
+
+path = Path("/mnt/data/main.py")
+path.write_text(code, encoding="utf-8")
+print(f"Created: {path}")
 
